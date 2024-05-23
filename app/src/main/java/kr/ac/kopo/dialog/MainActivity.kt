@@ -3,7 +3,6 @@ package kr.ac.kopo.dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
@@ -14,13 +13,15 @@ class MainActivity : AppCompatActivity() {
         var btnDialog = findViewById<Button>(R.id.btnDialog)
 
         btnDialog.setOnClickListener {
+            // 기본 목록 대화상자
+            var placesArr = arrayOf("유니버셜 스튜디오", "한적한 카페", "빤쮸토끼 팝업스토어")
             var dialog = AlertDialog.Builder(this@MainActivity)
-            dialog.setTitle("안내메시지")
-            dialog.setMessage("오늘은 목요일입니다.")
+            dialog.setTitle("좋아하는 핫플레이스")
             dialog.setIcon(R.drawable.dialogicon)
-            dialog.setPositiveButton("확인") { dialog1, which ->
-                Toast.makeText(this@MainActivity, "확인 버튼을 클릭했습니다.", Toast.LENGTH_SHORT).show()
+            dialog.setItems(placesArr) { d1, which ->
+                btnDialog.text = placesArr[which]
             }
+            dialog.setPositiveButton("닫기", null)
             dialog.show()
         }
     }
