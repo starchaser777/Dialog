@@ -13,13 +13,13 @@ class MainActivity : AppCompatActivity() {
         var btnDialog = findViewById<Button>(R.id.btnDialog)
 
         btnDialog.setOnClickListener {
-            // 라디오 버튼 목록 대화상자
+            // 체크박스 목록 대화상자
             var placesArr = arrayOf("유니버셜 스튜디오", "한적한 카페", "빤쮸토끼 팝업스토어")
             var selectArr = booleanArrayOf(false, true, false)
             var dialog = AlertDialog.Builder(this@MainActivity)
             dialog.setTitle("좋아하는 핫플레이스")
             dialog.setIcon(R.drawable.dialogicon)
-            dialog.setSingleChoiceItems(placesArr, 1) { d1, which ->
+            dialog.setMultiChoiceItems(placesArr, selectArr) { d1, which, isChecked ->
                 btnDialog.text = placesArr[which]
             }
             dialog.setPositiveButton("닫기", null)
